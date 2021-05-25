@@ -19,8 +19,16 @@ body {
     padding-bottom: 200px;
 }
 
-.card {
+.card-body {
     width: 150px;
+}
+
+.card-text {
+    font-size: 13px;
+}
+
+#temperature {
+    font-weight: bold;
 }
 
 /* Small devices (landscape phones, less than 768px) imported from https://getbootstrap.com/docs/5.0/layout/breakpoints/#max-width */
@@ -38,5 +46,11 @@ body {
     }
     .col {
         padding-bottom: 10px;
+    }
+    .card-body {
+        width: 300px;
+    }
+    .card-text {
+        font-size: 20px;
     }
 }
