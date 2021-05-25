@@ -25,13 +25,16 @@ body {
 
 /* Small devices (landscape phones, less than 768px) imported from https://getbootstrap.com/docs/5.0/layout/breakpoints/#max-width */
 @media (max-width: 767.98px) {
+    .container {
+        width: 480px;
+    }
     .h-60 {
         height: 380px;
-        width: 300px;
+        width: 450px;
     }
     .card-img-top {
         height: 100px;
-        width: 300px;
+        width: 450px;
     }
     .col {
         padding-bottom: 10px;
