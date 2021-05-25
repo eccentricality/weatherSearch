@@ -1,4 +1,5 @@
 let cityNameElm = document.getElementById('cityName');
+
 // creating elements within object as array to be iterated over by weather append function
 let dayContainer = [
     {
@@ -43,9 +44,9 @@ let dayContainer = [
     }
 ];
 
-// function to fetch weather based on city and unit of measurement
+// function to fetch weather based on city and unit of measurement (imperial will be default)
 function lookupWeather(city, unit){
-    fetch('http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=' + unit + '&appid=123206185652e49c7ed0ac08ec374c87')
+    fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=' + unit + '&appid=123206185652e49c7ed0ac08ec374c87')
         .then((response) => response.json())
         .then((data) => appendWeather(data));
 }
@@ -57,10 +58,10 @@ function appendWeather(data){
     cityNameElm.innerText = cityName;
     // iterate over created array of cards to append each day to respective cards
     for(let i=0; i <= 4; ++i) {
-        dayContainer[i].temp.innerText = data.list[i].main.temp;
+        dayContainer[i].temp.innerText = data.list[i].main.temp + '°F';
         dayContainer[i].weatherType.innerText = data.list[i].weather[0].main;
-        dayContainer[i].humidity.innerText = data.list[i].main.humidity;
-        dayContainer[i].windSpeed.innerText = data.list[i].wind.speed;
+        dayContainer[i].humidity.innerText = data.list[i].main.humidity + '%';
+        dayContainer[i].windSpeed.innerText = data.list[i].wind.speed + 'mph';
         dayContainer[i].weatherDesc.innerText = data.list[i].weather[0].description;
     }
 }
