@@ -1,7 +1,21 @@
+body {
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+.searchBar {
+    width: 400px;
+    margin: 0px;
+    padding-top: 100px;
+}
+
+.locationName {
+    margin-top: 50px;
+}
+
 .container {
     height: 1000px;
     width: 1000px;
-    padding-top: 200px;
+    padding-top: 50px;
     padding-bottom: 200px;
 }
 
@@ -13,11 +27,11 @@
 @media (max-width: 767.98px) {
     .h-60 {
         height: 380px;
-        width: 400px;
+        width: 300px;
     }
     .card-img-top {
         height: 100px;
-        width: 400px;
+        width: 300px;
     }
     .col {
         padding-bottom: 10px;

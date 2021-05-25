@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="./assets/reset.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="./assets/bootstrap.js" async defer></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./assets/bootstrap.css">
         <link rel="stylesheet" href="./assets/style.css" async defer>
     </head>
@@ -18,11 +20,25 @@
 
 
     <body>
+        <!-- search bar imported from https://mdbootstrap.com/docs/standard/forms/search/ -->
+        <div class="searchBar ml-auto mr-auto">
+            <div class="input-group">
+                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                  aria-describedby="search-addon" />
+                <button type="button" class="btn btn-outline-primary">search</button>
+            </div>
+            <h2 class="locationName text-center">ATLANTA</h2>
+        </div>
+
+
+
+
+        
         <!-- card layout imported from  https://getbootstrap.com/docs/5.0/components/card/ -->
-          <div class="container">
+        <div class="container">
           <div class="row row-cols-1 row-cols-md-5 g-4">
             <div class="col">
-              <div class="card h-60">
+              <div class="card h-60 ml-auto mr-auto">
                 <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Today</h5>
@@ -37,7 +53,7 @@
               </div>
             </div>
             <div class="col">
-              <div class="card h-60">
+              <div class="card h-60 ml-auto mr-auto">
                 <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Tomorrow</h5>
@@ -52,7 +68,7 @@
               </div>
             </div>
             <div class="col">
-              <div class="card h-60">
+              <div class="card h-60 ml-auto mr-auto">
                 <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Today+2</h5>
@@ -67,7 +83,7 @@
               </div>
             </div>
             <div class="col">
-                <div class="card h-60">
+                <div class="card h-60 ml-auto mr-auto">
                   <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Today+3</h5>
@@ -82,7 +98,7 @@
                 </div>
               </div>
               <div class="col">
-                <div class="card h-60">
+                <div class="card h-60 ml-auto mr-auto">
                   <img src="https://via.placeholder.com/150" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Today+4</h5>
