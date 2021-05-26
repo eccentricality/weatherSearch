@@ -101,8 +101,8 @@ function appendWeather(data){
     console.log(data);
 }
 
-// defaulted to atlanta
-lookupWeather('Atlanta');
+// defaulted to greenwich
+lookupWeather('Greenwich');
 
 // function to search input city
 function searchInput(){

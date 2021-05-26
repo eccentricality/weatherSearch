@@ -9,6 +9,7 @@
 
 body {
     font-family: 'Kumbh Sans', sans-serif;
+    background-color: var(--nneWhite);
 }
 
 .searchBar {
@@ -48,6 +49,10 @@ body {
     width: 100px;
     height: 100px;
     margin-left: 30px;
+}
+
+.card-footer {
+    background-color: var(--nneBrown);
 }
 
 /* Small devices (landscape phones, less than 768px) imported from https://getbootstrap.com/docs/5.0/layout/breakpoints/#max-width */
