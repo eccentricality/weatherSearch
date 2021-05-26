@@ -55,6 +55,10 @@ body {
     background-color: var(--nneBrown);
 }
 
+.cityUvFont {
+    font-weight: bold;
+}
+
 /* Small devices (landscape phones, less than 768px) imported from https://getbootstrap.com/docs/5.0/layout/breakpoints/#max-width */
 @media (max-width: 767.98px) {
     .container {

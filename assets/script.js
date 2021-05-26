@@ -11,7 +11,8 @@ let dayContainer = [
         weatherType: document.getElementById('weatherType1'),
         humidity: document.getElementById('humidity1'),
         windSpeed: document.getElementById('windSpeed1'),
-        weatherDesc: document.getElementById('weatherDescription1'),
+        cityUvi: document.getElementById('cityUvi1'),
+        uvColor: document.getElementById('uvColor1'),
         weatherIcon: document.getElementById('weatherIcon1')
     },
     {
@@ -20,7 +21,8 @@ let dayContainer = [
         weatherType: document.getElementById('weatherType2'),
         humidity: document.getElementById('humidity2'),
         windSpeed: document.getElementById('windSpeed2'),
-        weatherDesc: document.getElementById('weatherDescription2'),
+        cityUvi: document.getElementById('cityUvi2'),
+        uvColor: document.getElementById('uvColor2'),
         weatherIcon: document.getElementById('weatherIcon2')
     },
     {
@@ -29,7 +31,8 @@ let dayContainer = [
         weatherType: document.getElementById('weatherType3'),
         humidity: document.getElementById('humidity3'),
         windSpeed: document.getElementById('windSpeed3'),
-        weatherDesc: document.getElementById('weatherDescription3'),
+        cityUvi: document.getElementById('cityUvi3'),
+        uvColor: document.getElementById('uvColor3'),
         weatherIcon: document.getElementById('weatherIcon3')
     },
     {
@@ -38,7 +41,8 @@ let dayContainer = [
         weatherType: document.getElementById('weatherType4'),
         humidity: document.getElementById('humidity4'),
         windSpeed: document.getElementById('windSpeed4'),
-        weatherDesc: document.getElementById('weatherDescription4'),
+        cityUvi: document.getElementById('cityUvi4'),
+        uvColor: document.getElementById('uvColor4'),
         weatherIcon: document.getElementById('weatherIcon4')
     },
     {
@@ -47,7 +51,8 @@ let dayContainer = [
         weatherType: document.getElementById('weatherType5'),
         humidity: document.getElementById('humidity5'),
         windSpeed: document.getElementById('windSpeed5'),
-        weatherDesc: document.getElementById('weatherDescription5'),
+        cityUvi: document.getElementById('cityUvi5'),
+        uvColor: document.getElementById('uvColor5'),
         weatherIcon: document.getElementById('weatherIcon5')
     }
 ];
@@ -84,25 +89,53 @@ function lookupWeather(city){
         .then((data) => appendWeather(data));
 }
 
+// defaulted to greenwich
+lookupWeather('Greenwich');
+
 // function to append searched weather
 function appendWeather(data){
     // variables to store relevant data to be appended to html
     let cityName = data.city.name;
     cityNameElm.innerText = cityName;
+
+    let cityLat = data.city.coord.lat;
+    let cityLon = data.city.coord.lon;
+
+    lookupUvi(cityLat, cityLon);
+
     // iterate over created array of cards to append each day to respective cards
     for(let i=0; i <= 4; ++i) {
         dayContainer[i].temp.innerText = data.list[i].main.temp + '°F';
         dayContainer[i].weatherType.innerText = data.list[i].weather[0].main;
         dayContainer[i].humidity.innerText = 'Humidity: ' + data.list[i].main.humidity + '%';
         dayContainer[i].windSpeed.innerText = data.list[i].wind.speed + 'mph';
-        dayContainer[i].weatherDesc.innerText = data.list[i].weather[0].description;
         dayContainer[i].weatherIcon.src = 'https://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '.png';
     }
-    console.log(data);
 }
 
-// defaulted to greenwich
-lookupWeather('Greenwich');
+function lookupUvi(lat, lon){
+    fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=current,minutely,hourly,alerts&units=imperial&appid=123206185652e49c7ed0ac08ec374c87')
+    .then((response) => response.json())
+    .then((data) => appendUvi(data));
+}
+
+function appendUvi(data){
+    // iterates and appends uvi separately since it's not in 5 day forecast api
+    for(let i=0; i <= 4; ++i) {
+        dayContainer[i].cityUvi.innerText = 'UV Index: ' + data.daily[i].uvi;
+
+        // changes color of uv container depending on severity of the uv index
+        if (data.daily[i].uvi >= 0 && data.daily[i].uvi <= 2) {
+            dayContainer[i].uvColor.style.backgroundColor = '#58CF90';
+        }
+        else if (data.daily[i].uvi >= 3 && data.daily[i].uvi <= 7) {
+            dayContainer[i].uvColor.style.backgroundColor = '#E2E85E';
+        }
+        else {
+            dayContainer[i].uvColor.style.backgroundColor = '#FC4949';
+        }
+    }
+}
 
 // function to search input city
 function searchInput(){
