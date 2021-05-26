@@ -22,7 +22,7 @@
     <body>
         <!-- search bar imported from https://mdbootstrap.com/docs/standard/forms/search/ -->
         <div class="searchBar ml-auto mr-auto">
-            <div class="input-group">
+            <div class="input-group" id="searchBar">
                 <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                   aria-describedby="search-addon" />
                 <button type="button" class="btn btn-outline-primary">search</button>
@@ -35,7 +35,7 @@
           <div class="row row-cols-1 row-cols-md-5 g-4">
             <div class="col">
               <div class="card h-60">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="weather depiction"/>
+                <img src="https://via.placeholder.com/150" class="card-img-top" id="weatherIcon1" alt="weather depiction"/>
                 <div class="card-body mr-auto">
                   <h5 class="card-title">Today</h5>
                   <p class="card-text" id="temperature1">Temperature: 90°</p>
@@ -50,7 +50,7 @@
             </div>
             <div class="col">
               <div class="card h-60">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="weather depiction"/>
+                <img src="https://via.placeholder.com/150" class="card-img-top" id="weatherIcon2" alt="weather depiction"/>
                 <div class="card-body mr-auto">
                     <h5 class="card-title">Tomorrow</h5>
                     <p class="card-text" id="temperature2">Temperature: 85°</p>
@@ -65,7 +65,7 @@
             </div>
             <div class="col">
               <div class="card h-60">
-                <img src="https://via.placeholder.com/150" class="card-img-top" alt="weather depiction"/>
+                <img src="https://via.placeholder.com/150" class="card-img-top" id="weatherIcon3" alt="weather depiction"/>
                 <div class="card-body mr-auto">
                     <h5 class="card-title">Today+2</h5>
                     <p class="card-text" id="temperature3">Temperature: 76°</p>
@@ -80,7 +80,7 @@
             </div>
             <div class="col">
                 <div class="card h-60">
-                  <img src="https://via.placeholder.com/150" class="card-img-top" alt="weather depiction"/>
+                  <img src="https://via.placeholder.com/150" class="card-img-top" id="weatherIcon4" alt="weather depiction"/>
                   <div class="card-body mr-auto">
                     <h5 class="card-title">Today+3</h5>
                     <p class="card-text" id="temperature4">Temperature: 70°</p>
@@ -95,7 +95,7 @@
               </div>
               <div class="col">
                 <div class="card h-60">
-                  <img src="https://via.placeholder.com/150" class="card-img-top" alt="weather depiction"/>
+                  <img src="https://via.placeholder.com/150" class="card-img-top" id="weatherIcon5" alt="weather depiction"/>
                   <div class="card-body mr-auto">
                     <h5 class="card-title">Today+4</h5>
                     <p class="card-text" id="temperature5">Temperature: 64°</p>

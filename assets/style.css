@@ -1,3 +1,12 @@
+/* natural and earthy from https://visme.co/blog/website-color-schemes/ */
+:root {
+    --nneGreen: #8D8741;
+    --nneBlue: #659DBD;
+    --nneTan: #DAAD86;
+    --nneBrown: #BC986A;
+    --nneWhite: #FBEEC1;
+}
+
 body {
     font-family: 'Kumbh Sans', sans-serif;
 }
@@ -31,6 +40,10 @@ body {
     font-weight: bold;
 }
 
+.card {
+    background-color: var(--nneBlue);
+}
+
 /* Small devices (landscape phones, less than 768px) imported from https://getbootstrap.com/docs/5.0/layout/breakpoints/#max-width */
 @media (max-width: 767.98px) {
     .container {
@@ -38,19 +51,30 @@ body {
     }
     .h-60 {
         height: 380px;
-        width: 450px;
+        width: 250px;
     }
     .card-img-top {
         height: 100px;
-        width: 450px;
+        width: 100px;
+        margin-left: 70px;
     }
     .col {
         padding-bottom: 10px;
+        margin-left: 100px;
+    }
+    .card {
+        justify-content: center;
     }
     .card-body {
         width: 300px;
     }
     .card-text {
         font-size: 20px;
+    }
+    #cityName {
+        margin-left: 70px;
+    }
+    #searchBar {
+        margin-left: 40px;
     }
 }
