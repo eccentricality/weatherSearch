@@ -1,9 +1,12 @@
+const searchButtonElm = document.getElementById('searchBtnListener');
+const searchBarInputElm = document.getElementById('searchBarInput');
+
 let cityNameElm = document.getElementById('cityName');
 
 // creating elements within object as array to be iterated over by weather append function
 let dayContainer = [
     {
-        day: '1',
+        day: document.getElementById('day1'),
         temp: document.getElementById('temperature1'),
         weatherType: document.getElementById('weatherType1'),
         humidity: document.getElementById('humidity1'),
@@ -12,7 +15,7 @@ let dayContainer = [
         weatherIcon: document.getElementById('weatherIcon1')
     },
     {
-        day: '2',
+        day: document.getElementById('day2'),
         temp: document.getElementById('temperature2'),
         weatherType: document.getElementById('weatherType2'),
         humidity: document.getElementById('humidity2'),
@@ -21,7 +24,7 @@ let dayContainer = [
         weatherIcon: document.getElementById('weatherIcon2')
     },
     {
-        day: '3',
+        day: document.getElementById('day3'),
         temp: document.getElementById('temperature3'),
         weatherType: document.getElementById('weatherType3'),
         humidity: document.getElementById('humidity3'),
@@ -30,7 +33,7 @@ let dayContainer = [
         weatherIcon: document.getElementById('weatherIcon3')
     },
     {
-        day: '4',
+        day: document.getElementById('day4'),
         temp: document.getElementById('temperature4'),
         weatherType: document.getElementById('weatherType4'),
         humidity: document.getElementById('humidity4'),
@@ -39,7 +42,7 @@ let dayContainer = [
         weatherIcon: document.getElementById('weatherIcon4')
     },
     {
-        day: '5',
+        day: document.getElementById('day5'),
         temp: document.getElementById('temperature5'),
         weatherType: document.getElementById('weatherType5'),
         humidity: document.getElementById('humidity5'),
@@ -49,9 +52,34 @@ let dayContainer = [
     }
 ];
 
+// designate starting day as today
+let today = new Date().getDay();
+dayContainer[0].day.innerText = 'Today';
+
+// days of the week container
+let daysOfTheWeek = {
+    0: 'Sunday',
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday'
+}
+
+// display days of the week depending on what day today is
+for (let i = 1; i <= 4; i++) {
+    dayContainer[i].day.innerText = daysOfTheWeek[(i + today)];
+
+    // patch job to deal with catching a 7th index day that doesn't exist
+    if (dayContainer[i].day.innerText === 'undefined') {
+        dayContainer[i].day.innerText = 'Sunday';
+    }
+}
+
 // function to fetch weather based on city and unit of measurement (imperial will be default)
-function lookupWeather(city, unit){
-    fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=' + unit + '&appid=123206185652e49c7ed0ac08ec374c87')
+function lookupWeather(city){
+    fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=imperial&appid=123206185652e49c7ed0ac08ec374c87')
         .then((response) => response.json())
         .then((data) => appendWeather(data));
 }
@@ -73,4 +101,15 @@ function appendWeather(data){
     console.log(data);
 }
 
-lookupWeather('Suwanee', 'Imperial');
+// defaulted to atlanta
+lookupWeather('Atlanta');
+
+// function to search input city
+function searchInput(){
+    this.lookupWeather(searchBarInputElm.value);
+}
+
+// click function to grab input from search bar
+searchButtonElm.addEventListener('click', function() {
+    searchInput();
+});

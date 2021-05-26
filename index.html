@@ -22,10 +22,10 @@
     <body>
         <!-- search bar imported from https://mdbootstrap.com/docs/standard/forms/search/ -->
         <div class="searchBar ml-auto mr-auto">
-            <div class="input-group" id="searchBar">
-                <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+            <div class="input-group" id="searchBarPosition">
+                <input type="search" class="form-control rounded" id="searchBarInput" placeholder="Search" aria-label="Search"
                   aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-primary">search</button>
+                <button type="button" class="btn btn-outline-primary" id="searchBtnListener">search</button>
             </div>
             <h2 class="locationName text-center" id="cityName">ATLANTA</h2>
         </div>
@@ -37,7 +37,7 @@
               <div class="card h-60">
                 <img src="https://via.placeholder.com/150" class="card-img-top" id="weatherIcon1" alt="weather depiction"/>
                 <div class="card-body mr-auto">
-                  <h5 class="card-title">Today</h5>
+                  <h5 class="card-title" id="day1">Today</h5>
                   <p class="card-text" id="temperature1">Temperature: 90°</p>
                   <p class="card-text" id="weatherType1">Snowy</p>
                   <p class="card-text" id="humidity1">Humidity: 41%</p>
@@ -52,7 +52,7 @@
               <div class="card h-60">
                 <img src="https://via.placeholder.com/150" class="card-img-top" id="weatherIcon2" alt="weather depiction"/>
                 <div class="card-body mr-auto">
-                    <h5 class="card-title">Tomorrow</h5>
+                    <h5 class="card-title" id="day2">Tomorrow</h5>
                     <p class="card-text" id="temperature2">Temperature: 85°</p>
                     <p class="card-text" id="weatherType2">Sunny</p>
                     <p class="card-text" id="humidity2">Humidity: 41%</p>
@@ -67,7 +67,7 @@
               <div class="card h-60">
                 <img src="https://via.placeholder.com/150" class="card-img-top" id="weatherIcon3" alt="weather depiction"/>
                 <div class="card-body mr-auto">
-                    <h5 class="card-title">Today+2</h5>
+                    <h5 class="card-title" id="day3">Today+2</h5>
                     <p class="card-text" id="temperature3">Temperature: 76°</p>
                     <p class="card-text" id="weatherType3">Mostly Sunny</p>
                     <p class="card-text" id="humidity3">Humidity: 41%</p>
@@ -82,7 +82,7 @@
                 <div class="card h-60">
                   <img src="https://via.placeholder.com/150" class="card-img-top" id="weatherIcon4" alt="weather depiction"/>
                   <div class="card-body mr-auto">
-                    <h5 class="card-title">Today+3</h5>
+                    <h5 class="card-title" id="day4">Today+3</h5>
                     <p class="card-text" id="temperature4">Temperature: 70°</p>
                     <p class="card-text" id="weatherType4">Cloudy</p>
                     <p class="card-text" id="humidity4">Humidity: 41%</p>
@@ -97,7 +97,7 @@
                 <div class="card h-60">
                   <img src="https://via.placeholder.com/150" class="card-img-top" id="weatherIcon5" alt="weather depiction"/>
                   <div class="card-body mr-auto">
-                    <h5 class="card-title">Today+4</h5>
+                    <h5 class="card-title" id="day5">Today+4</h5>
                     <p class="card-text" id="temperature5">Temperature: 64°</p>
                     <p class="card-text" id="weatherType5">Rainy</p>
                     <p class="card-text" id="humidity5">Humidity: 41%</p>
