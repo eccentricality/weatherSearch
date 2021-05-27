@@ -1,5 +1,6 @@
 const searchButtonElm = document.getElementById('searchBtnListener');
 const searchBarInputElm = document.getElementById('searchBarInput');
+const searchHistoryElm = document.getElementById('searchHistory');
 
 let cityNameElm = document.getElementById('cityName');
 
@@ -61,7 +62,7 @@ let dayContainer = [
 let today = new Date().getDay();
 dayContainer[0].day.innerText = 'Today';
 
-// days of the week container
+// days of the week container accounts for starting on saturday as index 6 before being reset to sunday today index 0
 let daysOfTheWeek = {
     0: 'Sunday',
     1: 'Monday',
@@ -69,17 +70,16 @@ let daysOfTheWeek = {
     3: 'Wednesday',
     4: 'Thursday',
     5: 'Friday',
-    6: 'Saturday'
+    6: 'Saturday',
+    7: 'Sunday',
+    8: 'Monday',
+    9: 'Tuesday',
+    10: 'Wednesday'
 }
 
 // display days of the week depending on what day today is
 for (let i = 1; i <= 4; i++) {
-    dayContainer[i].day.innerText = daysOfTheWeek[(i + today)];
-
-    // patch job to deal with catching a 7th index day that doesn't exist
-    if (dayContainer[i].day.innerText === 'undefined') {
-        dayContainer[i].day.innerText = 'Sunday';
-    }
+    dayContainer[i].day.innerText = daysOfTheWeek[today + i];
 }
 
 // function to fetch weather based on city and unit of measurement (imperial will be default)
@@ -140,9 +140,58 @@ function appendUvi(data){
 // function to search input city
 function searchInput(){
     this.lookupWeather(searchBarInputElm.value);
+    localStorage.setItem('searchHistory', JSON.stringify(searchBarInputElm.value));
 }
 
 // click function to grab input from search bar
-searchButtonElm.addEventListener('click', function() {
+searchButtonElm.addEventListener('click', function(event) {
+    event.preventDefault()
     searchInput();
+
+    let searchedHistory = [];
+    let searchedCity = searchBarInputElm.value.trim();
+    
+    searchedHistory = JSON.parse(localStorage.getItem('searchedHistory')) || [];
+
+    searchedHistory.push(searchedCity);
+
+    let li = document.createElement('li');
+    li.id = 'searchHistoryLi';
+    li.class = 'searchHistoryLiClass';
+
+    li.appendChild(document.createTextNode(searchedCity));
+    searchHistoryElm.appendChild(li);
+
+    localStorage.setItem('searchedHistory', JSON.stringify(searchedHistory));
 });
+
+searchBarInputElm.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+        searchInput();
+    }
+});
+
+// jquery to handle floating history list of cities searched
+$(document).ready(function() {
+    // starts off hidden
+    $('#searchHistory').hide();
+
+    // show on focus
+    $('#searchBarInput').on('focus', function() {
+        $('#searchHistory').show();
+    });
+
+    // click handles searchInput to automatically populate previous city and search while handling style to toggle back
+    $('li').click(function() {
+        let textInfo = $(this).text();
+        $('#searchBarInput').val(textInfo);
+        $('#searchHistory').toggle();
+        searchInput();
+    });
+
+    // prevent further propagation of current event and hides search history
+    $('*').click(function (e) {
+        e.stopPropagation();
+        if (($(this).attr('id') != 'searchBarInput') && (!$(this).hasClass('searchHistoryLiClass'))) $('#searchHistory').hide();
+    });
+})
