@@ -2,8 +2,6 @@ const searchButtonElm = document.getElementById('searchBtnListener');
 const searchBarInputElm = document.getElementById('searchBarInput');
 const searchHistoryElm = document.getElementById('searchHistory');
 
-let viewport = jQuery(window).innerWidth();
-
 let cityNameElm = document.getElementById('cityName');
 
 // creating elements within object as array to be iterated over by weather append function
@@ -142,7 +140,6 @@ function appendUvi(data){
 // function to search input city
 function searchInput(){
     this.lookupWeather(searchBarInputElm.value);
-    localStorage.setItem('localSearchedCity', JSON.stringify(searchBarInputElm.value));
 }
 
 // click function to grab input from search bar
@@ -151,7 +148,8 @@ searchButtonElm.addEventListener('click', function(event) {
 
     searchInput();
     recallHistory();
-
+    shortenHistory();
+    searchBarInputElm.value = '';
 });
 
 searchBarInputElm.addEventListener('keyup', function(event) {
@@ -160,6 +158,8 @@ searchBarInputElm.addEventListener('keyup', function(event) {
         
         searchInput();
         recallHistory();
+        shortenHistory();
+        searchBarInputElm.value = '';
     }
 });
 
@@ -168,7 +168,7 @@ $(document).ready(function() {
     // starts off hidden
     $('#searchHistory').hide();
 
-    // show on focus
+    // show on focus for mobile port
     $('#searchBarInput').on('focus', function() {
         $('#searchHistory').show();
     });
@@ -190,26 +190,24 @@ $(document).ready(function() {
         $('#searchHistory').hide();
     })
 
-    // click handles searchInput to automatically populate previous city and search while handling style to toggle back
-    $('li').click(function() {
+    // click handles searchInput to automatically populate previous city clicked and search while handling style to toggle back
+    $('#searchHistory').on('click', 'li', function(e) {
+        e.preventDefault();
         let textInfo = $(this).text();
         $('#searchBarInput').val(textInfo);
-        $('#searchHistory').toggle();
         searchInput();
-    });
-
-    // prevent further propagation of current event and hides search history
-    $('*').click(function (e) {
-        e.stopPropagation();
-        if (($(this).attr('id') != 'searchBarInput') && (!$(this).hasClass('searchHistoryLiClass'))) $('#searchHistory').hide();
-    });
+        recallHistory();
+        shortenHistory();
+        searchBarInputElm.value = '';
+        $('#searchHistory').toggle();
+    })
 })
 
 function recallHistory() {
-    let localSearchHistory = [];
-    let searchedCity = searchBarInputElm.value.trim();
-    
-    localSearchHistory = JSON.parse(localStorage.getItem('localStoredHistory')) || [];
+    let localSearchHistory = JSON.parse(localStorage.getItem('localStoredHistory')) || [];
+    let searchedCity = searchBarInputElm.value;
+
+
     localSearchHistory.push(searchedCity);
 
     searchHistoryElm.innerText = '';
@@ -217,13 +215,19 @@ function recallHistory() {
     for (let i = localSearchHistory.length - 1; i >=0; i--) {
         let li = document.createElement('li');
 
-        if (i > 4) {
-            window.localStorage.removeItem(localStoredHistory[0]);
-        }
-
         li.appendChild(document.createTextNode(localSearchHistory[i]));
         searchHistoryElm.appendChild(li);
     }
 
+    localStorage.setItem('localStoredHistory', JSON.stringify(localSearchHistory));
+}
+
+// shorten history list and keeps it to 6 max
+function shortenHistory() {
+    let localSearchHistory = JSON.parse(localStorage.getItem('localStoredHistory')) || [];
+
+    if (localSearchHistory.length > 5) {
+        localSearchHistory.shift();
+    }
     localStorage.setItem('localStoredHistory', JSON.stringify(localSearchHistory));
 }
