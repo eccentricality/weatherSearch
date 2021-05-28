@@ -22,8 +22,9 @@ body {
     cursor: pointer;
     width: 300px;
     margin-left: 10px;
-    color: var(--nneWhite);
+    color: black;
     position: absolute;
+    background: var(--nneGreen);
 }
 
 #searchHistory:hover {
