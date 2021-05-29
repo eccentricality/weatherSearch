@@ -89,7 +89,7 @@ function lookupWeather(city){
         .then((data) => appendWeather(data));
 }
 
-// defaulted to greenwich
+// defaulted to greenwich and appends history if it exists on load
 lookupWeather('Greenwich');
 
 // function to append searched weather
@@ -108,7 +108,7 @@ function appendWeather(data){
         dayContainer[i].temp.innerText = data.list[i].main.temp + '°F';
         dayContainer[i].weatherType.innerText = data.list[i].weather[0].main;
         dayContainer[i].humidity.innerText = 'Humidity: ' + data.list[i].main.humidity + '%';
-        dayContainer[i].windSpeed.innerText = data.list[i].wind.speed + 'mph';
+        dayContainer[i].windSpeed.innerText = 'Wind: ' + data.list[i].wind.speed + 'mph';
         dayContainer[i].weatherIcon.src = 'https://openweathermap.org/img/wn/' + data.list[i].weather[0].icon + '.png';
     }
 }
@@ -120,6 +120,8 @@ function lookupUvi(lat, lon){
 }
 
 function appendUvi(data){
+    console.log(data)
+    
     // iterates and appends uvi separately since it's not in 5 day forecast api
     for(let i=0; i <= 4; ++i) {
         dayContainer[i].cityUvi.innerText = 'UV Index: ' + data.daily[i].uvi;

@@ -9,7 +9,7 @@
 
 body {
     font-family: 'Kumbh Sans', sans-serif;
-    background-color: var(--nneWhite);
+    background-color: #5D5C61;
 }
 
 .searchBar {
@@ -24,15 +24,26 @@ body {
     margin-left: 10px;
     color: black;
     position: absolute;
-    background: var(--nneGreen);
+    background: var(--nneBrown);
+    opacity: .6;
 }
 
 #searchHistory:hover {
-    background: var(--nneGreen);
+    background: var(--nneBrown);
+}
+
+#searchHistory li:hover {
+    background: var(--nneWhite);
+}
+
+#searchBtnListener {
+    background-color: #C2CAD0;
 }
 
 .locationName {
     margin-top: 50px;
+    font-weight: bold;
+    color: white;
 }
 
 .container {
@@ -86,9 +97,13 @@ body {
         margin-left: 70px;
     }
 
+    .searchBar {
+        width: 370px;
+    }
+
     .col {
         padding-bottom: 10px;
-        margin-left: 115px;
+        margin-left: 110px;
     }
 
     .card {
@@ -104,7 +119,7 @@ body {
     }
 
     #cityName {
-        margin-left: 35px;
+        margin-left: 22px;
     }
 
     #searchBarPosition {
@@ -112,6 +127,7 @@ body {
     }
 
     #searchHistory {
-        margin-left: 17px;
+        margin-left: 6px;
+        width: 293px;
     }
 }
