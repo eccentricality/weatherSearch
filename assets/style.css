@@ -70,35 +70,48 @@ body {
 
 /* Small devices (landscape phones, less than 768px) imported from https://getbootstrap.com/docs/5.0/layout/breakpoints/#max-width */
 @media (max-width: 767.98px) {
+    
     .container {
         width: 480px;
     }
+
     .h-60 {
         height: 380px;
         width: 250px;
     }
+
     .card-img-top {
         height: 100px;
         width: 100px;
         margin-left: 70px;
     }
+
     .col {
         padding-bottom: 10px;
-        margin-left: 100px;
+        margin-left: 115px;
     }
+
     .card {
         justify-content: center;
     }
+
     .card-body {
         width: 300px;
     }
+
     .card-text {
         font-size: 20px;
     }
+
     #cityName {
-        margin-left: 70px;
+        margin-left: 35px;
     }
+
     #searchBarPosition {
-        margin-left: 40px;
+        margin-left: 5px;
+    }
+
+    #searchHistory {
+        margin-left: 17px;
     }
 }
